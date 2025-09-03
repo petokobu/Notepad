@@ -64,31 +64,38 @@ namespace Notepad
             newToolStripMenuItem.Image = (Image)resources.GetObject("newToolStripMenuItem.Image");
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + N";
-            newToolStripMenuItem.Size = new Size(152, 22);
+            newToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            newToolStripMenuItem.Size = new Size(180, 22);
             newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
             // openFileToolStripMenuItem
             // 
+            openFileToolStripMenuItem.Image = (Image)resources.GetObject("openFileToolStripMenuItem.Image");
             openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
             openFileToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + O";
             openFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            openFileToolStripMenuItem.Size = new Size(152, 22);
+            openFileToolStripMenuItem.Size = new Size(180, 22);
             openFileToolStripMenuItem.Text = "Open";
             openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
             // 
+            toolStripMenuItem1.Image = (Image)resources.GetObject("toolStripMenuItem1.Image");
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.ShortcutKeyDisplayString = "Ctrl + S";
-            toolStripMenuItem1.Size = new Size(152, 22);
+            toolStripMenuItem1.ShortcutKeys = Keys.Control | Keys.S;
+            toolStripMenuItem1.Size = new Size(180, 22);
             toolStripMenuItem1.Text = "Save";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            toolStripMenuItem1.Click += saveToolStripMenuItem_Click;
             // 
             // saveAsFileItemToolStripMenuItem
             // 
+            saveAsFileItemToolStripMenuItem.Image = (Image)resources.GetObject("saveAsFileItemToolStripMenuItem.Image");
             saveAsFileItemToolStripMenuItem.Name = "saveAsFileItemToolStripMenuItem";
-            saveAsFileItemToolStripMenuItem.Size = new Size(152, 22);
+            saveAsFileItemToolStripMenuItem.Size = new Size(180, 22);
             saveAsFileItemToolStripMenuItem.Text = "Save as";
+            saveAsFileItemToolStripMenuItem.Click += saveAsFileItemToolStripMenuItem_Click;
             // 
             // textBox2
             // 
@@ -102,6 +109,7 @@ namespace Notepad
             textBox2.ScrollBars = ScrollBars.Vertical;
             textBox2.Size = new Size(800, 425);
             textBox2.TabIndex = 1;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // Form1
             // 
@@ -110,23 +118,14 @@ namespace Notepad
             ClientSize = new Size(800, 450);
             Controls.Add(textBox2);
             Controls.Add(toolStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Form1";
+            Text = "Notepad - untilted";
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Text Files|*.txt|Json Files|*.json|XML Files|*.xml|All Files|*.*";
-            fileDialog.ShowDialog();
-            if (fileDialog.FileName != "")
-            {
-                textBox2.Text = System.IO.File.ReadAllText(fileDialog.FileName);
-            }
+            this.FormClosing += new FormClosingEventHandler(this.Form1_FormClosing);
         }
 
         #endregion
