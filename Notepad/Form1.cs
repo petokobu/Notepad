@@ -11,7 +11,6 @@ namespace Notepad
         {
             InitializeComponent();
 
-            // If a file was passed as an argument, open it
             if (args.Length > 0 && File.Exists(args[0]))
             {
                 textBox2.Text = File.ReadAllText(args[0]);
